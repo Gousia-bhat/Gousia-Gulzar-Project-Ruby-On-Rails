@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <h3>Add Photo to Album</h3>
+    <%= form_for @photo, url: @photo.persisted? ? user_album_photo_path(current_user, @album, @photo) : user_album_photos_path(current_user, @album), method: @photo.persisted? ? 'patch' : 'post' do |f|%>
+      <div class="row">
+        <div class="col-md-12">
+            <%= f.label :image %>
+            <%= f.file_field :image%>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <%= f.label :tagline %>
+            <%= f.text_field :tagline%>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <%= hidden_field_tag :user_id, value: @user.id%>
+            <%= f.hidden_field :album_id%>
+            <%= f.submit %>
+          </div>
+        </div>
+    <%end%>
+  </div>
+</div>

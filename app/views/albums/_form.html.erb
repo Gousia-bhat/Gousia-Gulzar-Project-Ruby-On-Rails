@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row">
+    <h3>Create New Album</h3>
+      <%= form_for @album, url: @album.persisted? ? user_album_path(current_user) : user_albums_path(current_user), method: @album.persisted? ? 'patch' : 'post' do |f|%>
+        <div class="col-md-12">
+            <%= f.label :name %>
+            <%= f.text_field :name%>
+            <%= f.hidden_field :user_id%>
+            <%= f.submit %>
+        </div>
+      <%end%>
+  </div>
+</div>
